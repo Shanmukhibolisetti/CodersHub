@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technology Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .form-container {
+      width: 60vw;
+      height: 100vh;
+      background-color: #fff;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea,
+    .form-group select {
+      width: calc(100% - 60px);
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .form-group textarea {
+      height: 150px;
+    }
+
+    .form-group button {
+      font-size: 16px;
+      padding: 8px 20px;
+      background-color: rgb(160, 99, 160);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    .form-group button:hover {
+      background-color: rgb(160, 99, 160);
+    }
+
+    .back-button {
+      margin-top: 20px;
+    }
+
+    .link-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .add-button {
+      font-size: 16px;
+      padding: 8px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .add-button:hover {
+      background-color: #218838;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Technology Details</h1>
+
+    <form id="techForm" action="add_technology.php" method="post">
+      <div class="form-group">
+        <label for="techName">Technology Name:</label>
+        <input type="text" id="techName" name="techName" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="difficultyLevel">Difficulty Level:</label>
+        <select id="difficultyLevel" name="difficultyLevel" required>
+          <option value="">Select Difficulty Level</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="useCases">Use Cases:</label>
+        <textarea id="useCases" name="useCases" rows="6"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="linksResources">Links/Resources:</label>
+        <div>
+          <label for="paidLinks">Paid:</label>
+          <div id="paidLinksContainer">
+            <div class="input-group">
+              <input type="url" id="paidLinks" name="paidLinks[]">
+              <button type="button" class="add-button" onclick="addPaidLink()">+</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label for="unpaidLinks">Unpaid:</label>
+          <div id="unpaidLinksContainer">
+            <div class="input-group">
+              <input type="url" id="unpaidLinks" name="unpaidLinks[]">
+              <button type="button" class="add-button" onclick="addUnpaidLink()">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit">Submit</button>
+        <button type="button" class="back-button" onclick="goBack()">Back</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function addPaidLink() {
+      var container = document.getElementById('paidLinksContainer');
+      
+      var inputGroup = document.createElement('div');
+      inputGroup.className = 'input-group';
+      
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.name = 'paidLinks[]';
+      input.style.marginTop = '10px';
+      input.style.width = 'calc(100% - 60px)';
+      
+      inputGroup.appendChild(input);
+      container.appendChild(inputGroup);
+    }
+
+    function addUnpaidLink() {
+      var container = document.getElementById('unpaidLinksContainer');
+      
+      var inputGroup = document.createElement('div');
+      inputGroup.className = 'input-group';
+      
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.name = 'unpaidLinks[]';
+      input.style.marginTop = '10px';
+      input.style.width = 'calc(100% - 60px)';
+      
+      inputGroup.appendChild(input);
+      container.appendChild(inputGroup);
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>
